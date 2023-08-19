@@ -7,31 +7,29 @@ class Searchbar extends Component {
   };
 
   componentDidMount() {
-    console.log('tutaj będzie ładowane gallery na start');
+    console.log('did mount');
   }
 
   fetchImages = async () => {
-    console.log(this.state);
     try {
       const { inputSearch } = this.state;
       const response = await fetch(
         `https://pixabay.com/api/?key=35262947-7b4d084d7b454f8881faebde2&q=${inputSearch}&image_type=photo`
       );
       const data = await response.json();
-      console.log(data);
+      this.setState(prevState => ({ ...prevState, images: data.hits }));
+      console.log(this.state, 'fetch');
     } catch (error) {
       console.log('err');
     }
   };
 
   handleSubmit = e => {
-    console.log(this);
     e.preventDefault();
     this.fetchImages();
   };
 
   handleChange = e => {
-    console.log(e.target);
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -39,7 +37,24 @@ class Searchbar extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <header>
+          <form onSubmit={this.handleSubmit}>
+            <button type="submit">
+              <span>Search</span>
+            </button>
+
+            <input
+              name="inputSearch"
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.value}
+              autoComplete="off"
+              autoFocus
+              placeholder="Search images and photos"
+            />
+          </form>
+        </header>
+        {/* <form onSubmit={this.handleSubmit}>
           <input
             name="inputSearch"
             onChange={this.handleChange}
@@ -47,7 +62,7 @@ class Searchbar extends Component {
             value={this.state.value}
           />
           <button type="submit">Znajdz</button>
-        </form>
+        </form> */}
       </div>
     );
   }
