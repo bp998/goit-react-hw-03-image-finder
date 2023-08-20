@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const fetch = async (q, page) => {
   const URL = 'https://pixabay.com/api/';
-  const KEY = '34988935-65ac090a375899987f778a290';
+  const KEY = '35262947-7b4d084d7b454f8881faebde2';
   const response = await axios.get(URL, {
     params: {
       key: KEY,

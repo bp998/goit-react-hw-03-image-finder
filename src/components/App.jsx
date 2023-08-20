@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import css from './App.module.css';
 import getPictures from 'utils/fetchImages';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -101,7 +102,7 @@ class App extends Component {
             <Button onClick={this.handleLoadMore} label={'Load More'} />
           </>
         ) : (
-          <p className="noResult">No results</p>
+          <p className={css.noResults}>No results</p>
         )}
         {isModalOpen && (
           <Modal
