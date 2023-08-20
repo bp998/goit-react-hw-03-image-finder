@@ -17,6 +17,7 @@ class App extends Component {
     isModalOpen: false,
     alt: '',
     largeImageURL: '',
+    buttonLabel: 'Load more',
   };
 
   async componentDidUpdate(prevProps, prevState) {
@@ -99,7 +100,7 @@ class App extends Component {
         {queryData.length > 0 ? (
           <>
             <ImageGallery images={queryData} openModal={this.openModal} />
-            <Button onClick={this.handleLoadMore} label={'Load More'} />
+            <Button onClick={this.handleLoadMore} label={buttonLabel} />
           </>
         ) : (
           <p className={css.noResults}>No results</p>
